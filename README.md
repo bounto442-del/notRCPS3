@@ -110,6 +110,11 @@ drag the `dist/PPSA99300` folder you just built into `/data/homebrew/`. There is
 and no PUP to make — this is a homebrew folder, not a system package, and nothing in it
 installs to system storage.
 
+To hand that folder to someone as one file, `tools/make-release-zip.sh` packages it into
+`dist/notRCPS3-PPSA99300.zip` — unzip it and the folder is ready to drag. The script refuses
+to produce an archive that would carry firmware, a game, a save, a log or a key: the folder
+is a blank slate by construction, and the script checks rather than assumes.
+
 It is also a blank slate. The title ships with no firmware, no games and no per-user data,
 so every user brings their own; see **First run** below.
 
@@ -157,6 +162,7 @@ To boot one game straight away, write its path (or a `.pkg` to install) into
 | `src/rpcs3` | Submodule: [lavavex/rpcs3](https://github.com/lavavex/rpcs3), branch `ps5` (upstream RPCS3 plus the PS5 port; the frontend is `rpcs3/ps5/`) |
 | `cmake/ps5-rpcs3.cmake` | CMake toolchain for the title |
 | `tools/link-title.sh` | Links the title with RADV and signs `eboot.bin` |
+| `tools/make-release-zip.sh` | Packages the built folder as a blank-slate zip, and checks it is one |
 | `title/sce_sys` | Title metadata (`PPSA99300`) and icon |
 | `docs/` | Notes on the PS5 memory model, and on cheats and the package identity |
 | `PINS.md` | Pinned revisions of every dependency, and how to update them (`tools/sync-forks.sh`) |
