@@ -1,4 +1,4 @@
 [submodule "src/rpcs3"]
 	path = src/rpcs3
-	url = https://github.com/lavavex/rpcs3.git
+	url = https://github.com/bounto442-del/rpcs3-ps5.git
 	branch = ps5
