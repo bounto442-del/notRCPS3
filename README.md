@@ -17,26 +17,18 @@
 >   **at your own risk**.
 > - Back up anything on `/data/rpcs3/` (saves, settings) that you care about.
 
-> [!WARNING]
-> **The prebuilt title on the Releases page has no license it can be released under.**
-> A built title links RPCS3 (GPL-2.0-only) with the platform layer (GPL-3.0-or-later), and those
-> two licenses cannot be combined. That is unresolved, not swept up: `docs/LICENSING_AUDIT.md`
-> sets out the full composition with the evidence, along with the one relicensing that would
-> resolve it. The source in this repository is the part that builds cleanly. Either way, no
-> firmware, keys or games are included, and none should ever be — each user supplies their own.
-
 Build scripts for running [RPCS3](https://rpcs3.net) (the PlayStation 3 emulator) as a
 native title on a PS5 that already runs homebrew. RPCS3 renders through Vulkan on
 [PS5_Vulkan](https://github.com/mihawk-99/PS5_Vulkan)'s RADV port, plays audio through
 SceAudioOut and reads DualSense controllers through ScePad. The frontend is RPCS3's own
 Big Picture Mode.
 
-**Source, and a prebuilt title.** The tree here is the build chain; the Releases page carries a
-zip of a title already built from it, for a console you own and have already set up for homebrew.
-That zip has no license it can be released under — RPCS3 is GPL-2.0-only and the platform layer
-linked into the title is GPL-3.0-or-later, two licenses that cannot be combined — so it is
-provided as-is, and building it yourself from the source is the route that has no such question
-attached. Either way this repository holds no firmware, keys or games.
+**Source only.** The tree here is the build chain, and building it for your own console takes
+three commands and about ten minutes — see **Building** below. No prebuilt title is published:
+a built title links RPCS3 (GPL-2.0-only) with the platform layer (GPL-3.0-or-later), two
+licenses that cannot be combined, so there is no license a binary could be released under.
+`docs/LICENSING_AUDIT.md` sets out the composition with the evidence, and the one relicensing
+that would resolve it. This repository holds no firmware, keys or games.
 
 Nothing from Sony is here and nothing from Sony is needed from anyone else: no Sony code, no
 firmware, no disc keys, no game data. Each user brings their own console, their own firmware
@@ -235,8 +227,7 @@ It continues two repositories by [lavavex](https://github.com/lavavex):
 Both descend from GPL-licensed work, and the licenses are not the same one: this
 repository's scripts and the `src/rpcs3` submodule keep their own terms, and RPCS3 is
 GPL-2.0-only while the platform layer that gets linked into the title is GPL-3.0-or-later.
-Those two cannot be combined, which is the unresolved part of the prebuilt title described at
-the top of this file — and the reason the source route is the one without a caveat on it.
+Those two cannot be combined.
 
 That is a smaller problem than it sounds, and worth stating precisely: Mesa's RADV is most of
 the linked archive and it is MIT. The whole incompatible surface is the SDK's platform shim.
@@ -266,4 +257,4 @@ The scripts in this repository are GPL-3.0-or-later (`LICENSE`), and each one sa
 own `SPDX-License-Identifier`. RPCS3 and the other dependencies keep their own licenses.
 
 `docs/LICENSING_AUDIT.md` records what the build links, under which license, and what that
-means for the prebuilt title on the Releases page.
+means for a build you redistribute.
