@@ -79,8 +79,8 @@ Captured over Remote Play on a PS5 Pro (Need for Speed Carbon, BLUS30016).
 ## Building
 
 ```bash
-git clone https://github.com/lavavex/rpcs3-PS5.git
-cd rpcs3-PS5
+git clone https://github.com/bounto442-del/notRCPS3.git
+cd notRCPS3
 tools/bootstrap.sh
 ```
 
@@ -208,7 +208,7 @@ files go and the four ways they fail in silence.
 
 | Path | What |
 | --- | --- |
-| `src/rpcs3` | Submodule: [lavavex/rpcs3](https://github.com/lavavex/rpcs3), branch `ps5` (upstream RPCS3 plus the PS5 port; the frontend is `rpcs3/ps5/`) |
+| `src/rpcs3` | Submodule: [bounto442-del/rpcs3-ps5](https://github.com/bounto442-del/rpcs3-ps5), branch `ps5` (lavavex's PS5 port plus this fork's work; the frontend is `rpcs3/ps5/`) |
 | `cmake/ps5-rpcs3.cmake` | CMake toolchain for the title |
 | `tools/link-title.sh` | Links the title with RADV and signs `eboot.bin` |
 | `tools/make-release-zip.sh` | Packages the built folder as a blank-slate zip, and checks it is one |
