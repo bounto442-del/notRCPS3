@@ -127,8 +127,15 @@ Defaults are the ones this project uses (`PS3_USER_ID=00000002`, `PS5_USER_ID=00
 Two behaviours worth knowing, because both are deliberate:
 
 - **`put` never overwrites.** If the emulator already has a save under that name, it is moved
-  aside to `<dirname>.bak-<epoch>` before anything is written. Losing emulator progress to a
-  transfer that was supposed to *add* a save would be the worst possible failure here.
+  aside to `/data/rpcs3/saves-backup/<dirname>.bak-<epoch>/` before anything is written. Losing
+  emulator progress to a transfer that was supposed to *add* a save would be the worst possible
+  failure here.
+- **The backup goes outside `savedata/`, and that is not cosmetic.** The first version of this
+  tool left it beside the save, as `<dirname>.bak-<epoch>`. That name still begins with the
+  game's own directory-name prefix, so the game's save-list enumeration can pick it up as a
+  second, unreadable entry in the load menu. It lives in `/data/rpcs3/saves-backup/` now, where
+  nothing enumerates. (RPCS3's own overlay dialog does scan `.../savedata/` —
+  `cellSaveData.cpp:312` — which is what makes this worth avoiding rather than tolerating.)
 - **Every file is hashed twice** — once locally, once by reading it back off the console —
   and the run aborts on a mismatch. Save files are small enough that this costs nothing.
 
@@ -143,10 +150,15 @@ the tool's `PARAM.SFO` parser correctly named all 51 saves; the inFAMOUS save pa
 off the console over FTP — 8 files, 237,556 bytes — which is only possible because the
 console's FTP server ignores copy protection.
 
-**Not verified:** a save actually loading in a game on the console. That needs the console's
-FTP server up to `put` the files, and then a look at inFAMOUS's load menu. Until that happens,
-this document describes a mechanism that is sound and a transfer path that has not been run
-end to end.
+**Also verified:** both inFAMOUS slots were pushed to the console — `BCUS98119_INFAMOUS_0` and
+`_1`, 8 files, every one hash-checked by readback. The emulator already had a save in *each*
+slot, so in both cases the tool moved the existing progress to `/data/rpcs3/saves-backup/`
+rather than overwriting it; nothing was destroyed by the transfer.
+
+**Not verified:** a save actually loading in a game on the console. The files are in place and
+byte-identical, but the load menu has not been looked at. Until that happens, this document
+describes a mechanism that is sound and a transfer path whose *destination* is confirmed and
+whose *effect* is not.
 
 **Not started:** bulk transfer of a whole save library, and any handling of the PS3's
 encrypted save formats (`.PSV` exports from the XMB's "Copy" on the *PSP/PSV* side, or

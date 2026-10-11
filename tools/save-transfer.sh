@@ -20,6 +20,11 @@
 #   PS5_USER_ID=00000001   RPCS3's user (rpcs3/Emu/System.h:108)
 #   STAGE=~/ps3-saves      where saves are kept between the two consoles
 #
+# A save the emulator already has is never overwritten: 'put' moves it to
+# /data/rpcs3/saves-backup/<folder>.bak-<epoch>/ first. That is deliberately outside
+# dev_hdd0/home/<user>/savedata/, because the game enumerates that directory and a
+# backup named after the save would look like a second, broken entry in its load menu.
+#
 # Why this beats the XMB route: on a console with an FTP server, saves are read straight
 # off the HDD, so copy-protected save data -- which the PS3 refuses to copy to USB, with no
 # workaround -- transfers like anything else.
@@ -46,6 +51,10 @@ PS3_USER_ID = env("PS3_USER_ID", "00000002")
 PS5_USER_ID = env("PS5_USER_ID", "00000001")
 PS3_SAVES = "/dev_hdd0/home/%s/savedata/" % PS3_USER_ID
 PS5_SAVES = "/data/rpcs3/dev_hdd0/home/%s/savedata/" % PS5_USER_ID
+# Backups go OUTSIDE the savedata tree. A folder named "<save>.bak-<epoch>" left inside it
+# still starts with the game's own directory-name prefix, so the game's save list can pick it
+# up as a second, unreadable entry. Kept here instead, where nothing enumerates.
+PS5_BACKUP = "/data/rpcs3/saves-backup/"
 
 def connect(host, port, user, password):
     f = FTP()
@@ -188,10 +197,11 @@ def do_put():
     existing = [n for n, is_dir, _ in listing(f, PS5_SAVES + folder) if not is_dir]
     if existing:
         backup = "%s.bak-%d" % (folder, int(time.time()))
-        ensure(f, PS5_SAVES + backup)
+        ensure(f, PS5_BACKUP.rstrip("/"))
+        ensure(f, PS5_BACKUP + backup)
         for name in existing:
-            f.rename(PS5_SAVES + folder + "/" + name, PS5_SAVES + backup + "/" + name)
-        print("==> existing save set aside as %s" % backup)
+            f.rename(PS5_SAVES + folder + "/" + name, PS5_BACKUP + backup + "/" + name)
+        print("==> existing save set aside as %s%s" % (PS5_BACKUP, backup))
 
     sent = 0
     for path in sorted(src.rglob("*")):
