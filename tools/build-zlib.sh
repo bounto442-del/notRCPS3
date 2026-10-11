@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build zlib for the PS5 from RPCS3's own zlib submodule (static, PIC).
 # libpng's generated configuration cannot see the in-tree zlib headers, so RPCS3
 # is configured with USE_SYSTEM_ZLIB=ON pointing here. Output: deps/zlib-ps5.

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Install the PS5_PayloadSDK fork (the pinned revision) into deps/sdk-rpcs3: the upstream
 # v0.42 payload SDK with the fork's headers and platform layer (ps5_vrange_*, ps5_shm_*,
 # libc gap functions) over it. Also writes deps/ps5-extra-libs/libm.a (empty: the SDK's

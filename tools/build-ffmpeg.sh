@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build FFmpeg 8.1.1 for the PS5 as static archives, for RPCS3's media decoding.
 # Same component list RPCS3's ffmpeg-core uses (adapted from mihawk-99's
 # PS5_RetroArch tools/build-ffmpeg.sh, 6ceb712). Output: deps/ffmpeg-ps5.

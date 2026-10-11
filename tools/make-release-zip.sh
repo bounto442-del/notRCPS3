@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Zip the built title folder (dist/<TITLE_ID>) into a blank-slate archive that a user can
 # unzip and drag into /data/homebrew/ in one move.
 #

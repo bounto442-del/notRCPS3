@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build LLVM (PS5_LLVM: RPCS3's LLVM revision plus two PS4/PS5 ABI fixes) as static
 # libraries for the PS5, for RPCS3's PPU/SPU recompilers. The host builds tablegen first.
 # Output: deps/llvm-ps5. Takes a while (about 3500 objects).

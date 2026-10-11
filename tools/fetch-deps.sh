@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Clone the pinned source dependencies into deps/ and RPCS3's submodules into src/rpcs3.
 # Revisions are listed in PINS.md; a checkout that already sits at its pin is left alone.
 set -euo pipefail

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build GNU libiconv 1.18 for the PS5 (cellL10n). Adapted from mihawk-99 PS5_RetroArch 6ceb712.
 # Build GNU libiconv for the PS5 as a static archive, for RPCS3's cellL10n (the
 # PS3's character-set conversions; docs/RPCS3_PORT.md).

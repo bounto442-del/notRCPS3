@@ -17,10 +17,11 @@
 > - Back up anything on `/data/rpcs3/` (saves, settings) that you care about.
 
 > [!WARNING]
-> **Build scripts only, for your own console.** Nothing built from this may be
-> redistributed: RPCS3 is GPL-2.0-only, and PS5_Vulkan and PS5_PayloadSDK are GPL-3.0, so
-> the combined title cannot be shared under either license. No firmware, keys or games are
-> included here, and none should ever be — each user supplies their own.
+> **Build scripts only, for your own console.** A built title cannot be redistributed:
+> RPCS3 is GPL-2.0-only, the platform layer linked into the binary is GPL-3.0-or-later, and
+> those two licenses cannot be combined. `docs/LICENSING_AUDIT.md` has the evidence. No
+> firmware, keys or games are included here, and none should ever be — each user supplies
+> their own.
 
 Build scripts for running [RPCS3](https://rpcs3.net) (the PlayStation 3 emulator) as a
 native title on a PS5 that already runs homebrew. RPCS3 renders through Vulkan on
@@ -29,9 +30,9 @@ SceAudioOut and reads DualSense controllers through ScePad. The frontend is RPCS
 Big Picture Mode.
 
 **Source only.** This repository holds no binaries, firmware, keys or games, and builds
-from it must not be redistributed. RPCS3 is GPL-2.0-only, and PS5_Vulkan and
-PS5_PayloadSDK are GPL-3.0: the combined title cannot be shared under either license.
-Build it yourself, for your own console.
+from it must not be redistributed. RPCS3 is GPL-2.0-only and the platform layer linked into
+the title is GPL-3.0-or-later — two licenses that cannot be combined, so a built title has
+no license it can be released under. Build it yourself, for your own console.
 
 Nothing from Sony is here and nothing from Sony is needed from anyone else: no Sony code, no
 firmware, no disc keys, no game data. Each user brings their own console, their own firmware
@@ -164,7 +165,7 @@ To boot one game straight away, write its path (or a `.pkg` to install) into
 | `tools/link-title.sh` | Links the title with RADV and signs `eboot.bin` |
 | `tools/make-release-zip.sh` | Packages the built folder as a blank-slate zip, and checks it is one |
 | `title/sce_sys` | Title metadata (`PPSA99300`) and icon |
-| `docs/` | Notes on the PS5 memory model, and on cheats and the package identity |
+| `docs/` | Notes on the PS5 memory model, on cheats and the package identity, and the licensing audit |
 | `PINS.md` | Pinned revisions of every dependency, and how to update them (`tools/sync-forks.sh`) |
 
 ## Provenance
@@ -184,8 +185,13 @@ It continues two repositories by [lavavex](https://github.com/lavavex):
 
 Both descend from GPL-licensed work, and the licenses are not the same one: this
 repository's scripts and the `src/rpcs3` submodule keep their own terms, and RPCS3 is
-GPL-2.0-only while PS5_Vulkan and PS5_PayloadSDK are GPL-3.0. That combination is why
-nothing built from here is redistributed — see the warning at the top.
+GPL-2.0-only while the platform layer that gets linked into the title is GPL-3.0-or-later.
+Those two cannot be combined, which is why nothing built from here is redistributed.
+
+That is a smaller problem than it sounds, and worth stating precisely: Mesa's RADV is most of
+the linked archive and it is MIT. The whole incompatible surface is the SDK's platform shim.
+`docs/LICENSING_AUDIT.md` sets out the full composition with the evidence, along with the one
+relicensing that would resolve it.
 
 Upstream RPCS3's credits are in `src/rpcs3` and in **Credits** below.
 
@@ -203,5 +209,8 @@ Parts of this repository were written with AI assistance, and the commits say so
 
 ## License
 
-The scripts in this repository are GPL-3.0-or-later (`LICENSE`). RPCS3 and the other
-dependencies keep their own licenses.
+The scripts in this repository are GPL-3.0-or-later (`LICENSE`), and each one says so in its
+own `SPDX-License-Identifier`. RPCS3 and the other dependencies keep their own licenses.
+
+`docs/LICENSING_AUDIT.md` records what the build links, under which license, and why none of
+it may be redistributed as a binary.

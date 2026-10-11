@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Keep lavavex's forks of the dependencies current, and show what is new upstream.
 #
 # 1. Fast-forwards each fork's default branch from its upstream (gh repo sync), so the

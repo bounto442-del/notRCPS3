@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build PS5_Vulkan's RADV driver for the title: the PS5 shader compiler (psbc), the
 # ps5-opengl 0.3.0 adapter, Mesa's Vulkan runtime and the RADV release archive, plus
 # the host tools a title needs (ps5-native-tool, the clean-room libc.prx).

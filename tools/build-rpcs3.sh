@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Configure and build RPCS3 (src/rpcs3) as the PS5 title. link-title.sh runs as the
 # link step and leaves the installable folder in dist/PPSA99300.
 set -euo pipefail

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Fetch RPCS3's per-game recommended settings (the database the Qt frontend downloads,
 # https://api.rpcs3.net/config/?api=v1) into deps/config_database.json, for link-title.sh.
 set -euo pipefail

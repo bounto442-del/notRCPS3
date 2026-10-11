@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Build everything from a fresh clone: dependencies, the RADV driver, LLVM, the
 # third-party libraries and RPCS3 itself. Each step skips work that is already done,
 # so the script can be re-run after a failure. Result: dist/PPSA99300.

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Upload the RPCS3 title folder (dist/<TITLE_ID>) to the console's /data/homebrew over FTP.
 # ShadowMount+ installs a new folder within ~15 s (restart its payload if its scanner hangs).
 #   PS5_HOST=<console ip> (required), FTP_PORT (default 2121)

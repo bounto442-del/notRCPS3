@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# SPDX-License-Identifier: GPL-3.0-or-later
 # Link RPCS3's PS5 frontend into a native title and package its folder.
 #
 #   link-title.sh OUTPUT INPUT...
