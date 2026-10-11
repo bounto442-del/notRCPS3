@@ -9,16 +9,21 @@
 > It is **not** supported by the RPCS3 team: do not report problems with it to them.
 >
 > - Most games are untested; many will crash back to the PS5 home screen or freeze.
-> - It runs as a homebrew title on a jailbroken console. Jailbreaks, payloads and
->   unsigned titles carry their own risks; you use all of this **at your own risk**.
+> - It runs as an unsigned homebrew title, which is only possible on a console you own that
+>   is already set up to run homebrew. That setup is not part of this project, and this
+>   project provides no means of modifying a console — it is a build chain for an emulator
+>   title, nothing more. Unsigned titles carry their own risks; you use all of this
+>   **at your own risk**.
 > - Back up anything on `/data/rpcs3/` (saves, settings) that you care about.
 
 > [!WARNING]
-> **Source only, personal use only.** Never share built `eboot.bin`/title folders,
-> firmware, keys or games. The licenses involved forbid it (below).
+> **Build scripts only, for your own console.** Nothing built from this may be
+> redistributed: RPCS3 is GPL-2.0-only, and PS5_Vulkan and PS5_PayloadSDK are GPL-3.0, so
+> the combined title cannot be shared under either license. No firmware, keys or games are
+> included here, and none should ever be — each user supplies their own.
 
 Build scripts for running [RPCS3](https://rpcs3.net) (the PlayStation 3 emulator) as a
-native title on a jailbroken PS5. RPCS3 renders through Vulkan on
+native title on a PS5 that already runs homebrew. RPCS3 renders through Vulkan on
 [PS5_Vulkan](https://github.com/mihawk-99/PS5_Vulkan)'s RADV port, plays audio through
 SceAudioOut and reads DualSense controllers through ScePad. The frontend is RPCS3's own
 Big Picture Mode.
@@ -34,8 +39,8 @@ and their own games, exactly as they do with RPCS3. This project is not affiliat
 endorsed by or connected to Sony Interactive Entertainment; "PlayStation", "PS3" and "PS5"
 are trademarks of Sony Interactive Entertainment, and RPCS3 belongs to the RPCS3 team.
 
-Tested upstream on a PS5 Pro, firmware 13.60, with the Relapse jailbreak, etaHEN, ftpsrv and
-ShadowMount+. Need for Speed Carbon (BLUS30016) is fully playable there.
+Tested upstream on a PS5 Pro, firmware 13.60, with an existing homebrew setup (etaHEN, ftpsrv
+and ShadowMount+). Need for Speed Carbon (BLUS30016) is fully playable there.
 
 This fork is developed and tested on a standard PS5 on **firmware 7.00** — older than the
 13.60 above — with ftpsrv and ShadowMount+. inFAMOUS (BCUS98119) and Jak and Daxter both play
