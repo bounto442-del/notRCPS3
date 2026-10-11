@@ -430,12 +430,17 @@ use of `patch_engine::m_map` matches the apply-time lookup; the two Artemis file
 structurally against those rules before being uploaded; the renamed `param.json` was pushed with a
 backup and a readback hash check.
 
-**Not verified:** the Cheats page rendering on the console — it needs a build, a deploy and a look
-at the actual screen. The layout is assembled from the same primitives and the same constants the
-settings pages use (`menu_entry_height`, `menu_checkbox_size`, `menu_entry_margin`), but a `switchbox`
-inside a `horizontal_layout` with `auto_resize = false` is the one arrangement here that has no
-direct precedent in the existing pages, so it is the first thing to look at if a row comes out
-misaligned.
+**Verified on the console, 2026-10-10:** the page opens from the Home Menu and works — rows list,
+and the switches toggle. That also settles the one layout question this document flagged: a
+`switchbox` inside a `horizontal_layout` with `auto_resize = false` has no direct precedent in the
+existing pages, and the arrangement was the first thing to look at if a row came out misaligned. It
+did not.
+
+**Still not verified:** that a toggle has any effect on a *running* game. Toggling writes
+`patch_config.yml` and the page says to restart, so the end-to-end claim is "flip a switch, restart,
+the cheat is on" — and only the first two thirds of that has been watched. The check is a `Applied
+patch (` line in `RPCS3.log` for a cheat switched on this way, and its absence for one switched off
+(§1.7); nothing cheaper distinguishes "applied" from "loaded".
 
 **Not started:** importing cheat collections automatically, and any per-game cheat browsing from the
 host side. Both are Qt features upstream and stay Qt features.
