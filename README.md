@@ -1,4 +1,4 @@
-# rpcs3-PS5
+# notRCPS3
 
 [![Follow @_roberth_ on X](https://img.shields.io/badge/follow-%40__roberth__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/_roberth_)
 
@@ -27,6 +27,12 @@ Big Picture Mode.
 from it must not be redistributed. RPCS3 is GPL-2.0-only, and PS5_Vulkan and
 PS5_PayloadSDK are GPL-3.0: the combined title cannot be shared under either license.
 Build it yourself, for your own console.
+
+Nothing from Sony is here and nothing from Sony is needed from anyone else: no Sony code, no
+firmware, no disc keys, no game data. Each user brings their own console, their own firmware
+and their own games, exactly as they do with RPCS3. This project is not affiliated with,
+endorsed by or connected to Sony Interactive Entertainment; "PlayStation", "PS3" and "PS5"
+are trademarks of Sony Interactive Entertainment, and RPCS3 belongs to the RPCS3 team.
 
 Tested on a PS5 Pro, firmware 13.60, with the Relapse jailbreak, etaHEN, ftpsrv and
 ShadowMount+. Need for Speed Carbon (BLUS30016) is fully playable.
@@ -87,8 +93,16 @@ Close RPCS3 on the console first (a running title's files cannot be replaced), t
 PS5_HOST=192.168.x.x tools/deploy.sh
 ```
 
-This uploads `dist/PPSA99300` to `/data/homebrew/PPSA99300`, and ShadowMount+ adds it to
-the home screen.
+That copies `dist/PPSA99300` into `/data/homebrew/`, and ShadowMount+ adds it to the home
+screen within about 15 seconds.
+
+**The folder is the whole install.** `deploy.sh` only does over FTP what you can do by hand:
+drag the `dist/PPSA99300` folder you just built into `/data/homebrew/`. There is no `.pkg`
+and no PUP to make — this is a homebrew folder, not a system package, and nothing in it
+installs to system storage.
+
+It is also a blank slate. The title ships with no firmware, no games and no per-user data,
+so every user brings their own; see **First run** below.
 
 ## First run
 
@@ -113,6 +127,10 @@ To boot one game straight away, write its path (or a `.pkg` to install) into
 
 - **Few games tested.** Need for Speed Carbon (BLUS30016) plays at 60 fps. inFAMOUS (BCUS98119)
   plays, but stutters and runs below full speed in places. Nothing else has been tried yet.
+- **Audio output is s16 stereo, and the setting that says so is ignored.** The SceAudioOut port
+  is always opened as s16 stereo, which is the format this console plays; `Audio: Convert to
+  16 bit` makes no difference. A float stereo port opens with a valid handle and a clean log and
+  then produces no sound, so the format is not something to experiment with.
 - **The first launch of a game is slow.** RPCS3 compiles the game's PPU and SPU code and its
   shaders, and stutters while it does. The caches in `/data/rpcs3/cache` make later launches
   faster.
@@ -131,8 +149,32 @@ To boot one game straight away, write its path (or a `.pkg` to install) into
 | `cmake/ps5-rpcs3.cmake` | CMake toolchain for the title |
 | `tools/link-title.sh` | Links the title with RADV and signs `eboot.bin` |
 | `title/sce_sys` | Title metadata (`PPSA99300`) and icon |
-| `docs/` | Notes on the PS5 memory model |
+| `docs/` | Notes on the PS5 memory model, and on cheats and the package identity |
 | `PINS.md` | Pinned revisions of every dependency, and how to update them (`tools/sync-forks.sh`) |
+
+## Provenance
+
+This is a fork, and the history is kept rather than squashed, so the original work stays
+attributable commit by commit.
+
+It continues two repositories by [lavavex](https://github.com/lavavex):
+
+- **[lavavex/rpcs3-PS5](https://github.com/lavavex/rpcs3-PS5)** — the port scaffolding, the
+  build chain and the title metadata. This repository descends from it; the commits before
+  the fork point are lavavex's.
+- **[lavavex/rpcs3](https://github.com/lavavex/rpcs3)**, branch `ps5` — upstream RPCS3 plus
+  the PS5 port in `rpcs3/ps5/`. The `src/rpcs3` submodule points at a fork of it, and the
+  work done on top sits on the tip of lavavex's `ps5` branch (`5e0e0e613`) rather than
+  rewriting it.
+
+Both descend from GPL-licensed work, and the licenses are not the same one: this
+repository's scripts and the `src/rpcs3` submodule keep their own terms, and RPCS3 is
+GPL-2.0-only while PS5_Vulkan and PS5_PayloadSDK are GPL-3.0. That combination is why
+nothing built from here is redistributed — see the warning at the top.
+
+Upstream RPCS3's credits are in `src/rpcs3` and in **Credits** below.
+
+Parts of this repository were written with AI assistance, and the commits say so.
 
 ## Credits
 
