@@ -128,7 +128,8 @@ Put these in `/data/rpcs3/` on the console over FTP:
   a `games/` folder on an exFAT USB drive.
 
 RPCS3 opens in Big Picture Mode with your games listed. Players 1–4 are the DualSenses of
-the signed-in users. Options + touchpad acts as the PS button.
+the signed-in users. **Options + touchpad** acts as the PS button and opens the Home Menu —
+**Controls** below has the whole pad, including the cheats switches.
 
 For a custom home-screen background, convert a 16:9 image with
 `deps/PS5_Vulkan/tools/prepare-assets.sh --background <image> --output-directory title/sce_sys`
@@ -137,6 +138,49 @@ and rebuild; `pic0.dds`/`pic1.dds` stay out of git.
 Settings, logs and caches live in `/data/rpcs3/` (log: `/data/rpcs3/cache/RPCS3.log`).
 To boot one game straight away, write its path (or a `.pkg` to install) into
 `/data/rpcs3/boot.txt`.
+
+## Controls
+
+There is exactly one hotkey. Everything else is the Home Menu, which is RPCS3's own overlay and
+is driven by a DualSense alone — there is no keyboard on the console, so none of RPCS3's desktop
+key bindings exist here.
+
+| Input | What it does |
+| --- | --- |
+| **Options + Touchpad** | The PS button. Opens the Home Menu, and closes it again. |
+| **Options** (on its own) | START. Resumes emulation when it is paused. |
+| **Touchpad click** | Select. The DualSense has no Select button, so the touchpad click stands in for it. |
+| **D-pad up / down** | Move through a list. Wraps around at each end. |
+| **L1 / R1** | Move ten entries at a time in a long list. |
+| **Circle** | Back one page; on the Home Menu's first page, closes it and resumes. |
+
+The PS button belongs to the system and cannot be taken by an app, which is why the pair above is
+bound in its place (`rpcs3/ps5/ps5_pad_handler.cpp`). Players 1–4 are the DualSenses of the
+signed-in users, and all of them map the same way.
+
+### Turning cheats on and off from the couch
+
+RPCS3 calls cheats **patches**, and this port has a **Cheats** page listing every patch the engine
+loaded for the running title — one row each, description on the left, a switch on the right.
+
+1. **Options + Touchpad** — open the Home Menu.
+2. **D-pad down** to **Cheats** (it is the third row: Resume, Settings, **Cheats**), then **Cross**
+   to open the page. Pages only open on Cross — left and right do nothing on them.
+3. **D-pad up / down** to a row. **Cross**, **D-pad left/right** or the **left stick** toggles it.
+   **Touchpad click** forces it off, which is also what every patch defaults to.
+4. **Circle** back out, then choose **Restart** in the Home Menu.
+
+**Toggles are saved the instant you flip them, but they cannot change the session you are in.**
+PPU patches are written into the game's executable once, when it is loaded, so a restart is the
+only thing that can pick a change up. That is how patching works rather than a limitation of this
+port, and the page says so on its own first row: *"Saved as you toggle. Takes effect after
+Restart."*
+
+Each flip is logged as `Cheats: '<name>' enabled|disabled`, and a patch that is actually live logs
+`Applied patch (…` when the game boots — so a session's cheat state is recoverable afterwards from
+`/data/rpcs3/cache/RPCS3.log`. That log line is the only truthful answer to "is it on": a patch
+file merely being present proves nothing. `docs/CHEATS_AND_PACKAGE_NOTES.md` covers where the patch
+files go and the four ways they fail in silence.
 
 ## Known issues
 
