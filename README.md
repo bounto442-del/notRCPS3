@@ -200,6 +200,9 @@ Parts of this repository were written with AI assistance, and the commits say so
 ## Credits
 
 - [RPCS3](https://github.com/RPCS3/rpcs3) and its contributors.
+- [Font Awesome Free](https://fontawesome.com) for the icon assets RPCS3's overlay uses.
+  RPCS3's copies carry no attribution of their own, so this is credited rather than assumed;
+  see `docs/LICENSING_AUDIT.md` §2.1.
 - mihawk-99 for PS5_Vulkan, PS5_Mesa, PS5_PayloadSDK and PS5_LLVM, and the earlier RPCS3
   port notes this one follows.
 - Swordpdf's [PS5SX2](https://github.com/Swordpdf/PS5SX2) for the memory model.

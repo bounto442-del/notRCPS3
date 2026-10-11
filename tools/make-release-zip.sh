@@ -9,7 +9,7 @@
 #         ├── sce_module/libc.prx
 #         ├── sce_sys/{param.json,icon0.png}
 #         ├── game_configs/       (RPCS3's per-game settings database)
-#         ├── Icons/ui/           (RPCS3's own overlay icons)
+#         ├── Icons/ui/           (RPCS3's own overlay icons; see docs/LICENSING_AUDIT.md 2.1)
 #         └── patches/            (empty)
 #
 # "Blank slate" is enforced, not assumed: the checks below fail the run if the archive would

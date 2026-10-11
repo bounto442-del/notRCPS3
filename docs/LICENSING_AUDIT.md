@@ -47,7 +47,39 @@ Two components ship in `dist/PPSA99300/` but are **not** linked into the ELF:
 | Shipped alongside | License | Note |
 | --- | --- | --- |
 | `sce_module/libc.prx` | GPL-3.0-or-later | A separate module (PS5_Vulkan's `runtime/libc.prx`, hash-checked at `tools/link-title.sh:110`), not part of the ELF |
-| `game_configs/`, `Icons/ui/` | GPL-2.0-only | RPCS3's own data and assets, copied by `tools/link-title.sh:115-116` |
+| `game_configs/`, `Icons/ui/` | GPL-2.0-only | RPCS3's own data and assets, copied by `tools/link-title.sh:116-117` |
+
+### 2.1 The icon assets, and one caveat
+
+`Icons/ui/` (59 PNGs) was added to upstream RPCS3 by an RPCS3 maintainer, so it ships as part
+of RPCS3's own tree under RPCS3's license. The submodule's history agrees:
+
+```
+$ git log --oneline -- bin/Icons/ui
+f880a00cb overlays: Provide home icons in different sizes
+7fd0aa95f overlays: Add icons for trophies and friends
+3acf1f647 overlays: Add some more icons
+0fda2dd60 Optimise PNGs across the repo       (Jakub Marcowski)
+```
+
+**The caveat: those files carry no license or attribution of their own, anywhere.** A search
+of the RPCS3 tree found no licence, README, NOTICE or COPYING file in or above
+`bin/Icons/`, and **zero** occurrences of "Font Awesome", "FontAwesome" or "font-awesome" in
+any file of any type.
+
+That silence is worth flagging because the evidence points somewhere. The filenames are Font
+Awesome Free icon slugs — `play-button-arrowhead.png`, `circle-left-solid.png`,
+`floppy-disk-solid.png`, `trophy-solid.png` — and the code's enum is literally named
+`fa_icon` (`overlays/HomeMenu/overlay_home_icons.h:8-29`), mapped to filenames by
+`fa_icon_to_filename()` (`overlay_home_icons.cpp:13-57`). Nothing in the tree expands "fa".
+
+So the honest position is: **documented as RPCS3's GPL-2.0-only assets; undocumented as
+anything else; and very likely Font Awesome Free underneath.** Font Awesome Free's icons are
+CC BY 4.0, which asks for a credit line. That obligation — if it exists — is RPCS3
+upstream's, inherited by anyone redistributing their assets. It costs one line to satisfy and
+nothing to be wrong about, so this repository credits Font Awesome in **Credits** rather than
+arguing the point. *Not verified either way: I did not diff the PNGs against Font Awesome's
+own releases.*
 
 ---
 
@@ -88,8 +120,9 @@ realistically ask for.
 - The source repository, its history, and the `src/rpcs3` submodule pointer. This is the
   ordinary exercise of a GPL.
 - Our own scripts, `title/sce_sys/param.json`, and the README.
-- `game_configs/` and `Icons/ui/` redistributed *on their own* — RPCS3's GPL-2.0-only covers
-  them, and an unmodified copy carries RPCS3's own notices.
+- `game_configs/` redistributed *on their own* — RPCS3's GPL-2.0-only covers them.
+- `Icons/ui/` likewise, with the caveat in §2.1: the assets carry no licence file of their
+  own, and a credit line to Font Awesome is the cheap way to be safe rather than right.
 - `sce_module/libc.prx` redistributed on its own — GPL-3.0-or-later is a fine license to
   redistribute under; it is the *combination* that fails.
 - A built title handed directly to another person. Personal use between two people is not
