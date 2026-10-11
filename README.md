@@ -34,8 +34,12 @@ and their own games, exactly as they do with RPCS3. This project is not affiliat
 endorsed by or connected to Sony Interactive Entertainment; "PlayStation", "PS3" and "PS5"
 are trademarks of Sony Interactive Entertainment, and RPCS3 belongs to the RPCS3 team.
 
-Tested on a PS5 Pro, firmware 13.60, with the Relapse jailbreak, etaHEN, ftpsrv and
-ShadowMount+. Need for Speed Carbon (BLUS30016) is fully playable.
+Tested upstream on a PS5 Pro, firmware 13.60, with the Relapse jailbreak, etaHEN, ftpsrv and
+ShadowMount+. Need for Speed Carbon (BLUS30016) is fully playable there.
+
+This fork is developed and tested on a standard PS5 on **firmware 7.00** — older than the
+13.60 above — with ftpsrv and ShadowMount+. inFAMOUS (BCUS98119) and Jak and Daxter both play
+there, with the caveats in **Known issues**. Nothing else has been tried on it.
 
 ## Screenshots
 
