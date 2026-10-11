@@ -1,6 +1,7 @@
 # notRCPS3
 
 [![Follow @_roberth_ on X](https://img.shields.io/badge/follow-%40__roberth__-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/_roberth_)
+[![Follow @bounto442 on X](https://img.shields.io/badge/follow-%40bounto442-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/bounto442)
 
 > [!CAUTION]
 > **EXPERIMENTAL. EXPECT CRASHES, FREEZES AND BROKEN GAMES.**
